@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Te Amo en 200 Idiomas 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #ff6eb4;
+    --hotpink: #ff3d9a;
+    --purple: #c96dff;
+    --yellow: #ffe066;
+    --sky: #7ee8fa;
+    --mint: #6fffc1;
+    --orange: #ffb347;
+    --bg: #fff5fb;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--bg);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(255,110,180,0.12) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,109,255,0.12) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(126,232,250,0.08) 0%, transparent 60%);
+  }
+
+  /* ——— HEADER ——— */
+  header {
+    text-align: center;
+    padding: 40px 20px 10px;
+  }
+
+  header h1 {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    color: var(--hotpink);
+    text-shadow: 3px 3px 0 var(--purple), 5px 5px 0 rgba(255,110,180,0.3);
+    letter-spacing: 2px;
+    line-height: 1.2;
+    animation: wobble 3s ease-in-out infinite;
+  }
+
+  header p {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    color: var(--purple);
+    font-size: 1.2rem;
+    margin-top: 8px;
+  }
+
+  @keyframes wobble {
+    0%,100% { transform: rotate(-1deg); }
+    50%      { transform: rotate(1.5deg); }
+  }
+
+  /* ——— BUTTON ——— */
+  .btn-wrap {
+    text-align: center;
+    margin: 18px 0 6px;
+    position: relative;
+    z-index: 10;
+  }
+
+  #dino-btn {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.25rem;
+    background: linear-gradient(135deg, #ff6eb4, #c96dff);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 32px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #a040cc, 0 8px 18px rgba(201,109,255,0.3);
+    transition: transform 0.12s, box-shadow 0.12s;
+    letter-spacing: 1px;
+  }
+
+  #dino-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 #a040cc, 0 12px 24px rgba(201,109,255,0.4);
+  }
+
+  #dino-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #a040cc;
+  }
+
+  /* ——— POPUP ——— */
+  #popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(255,200,230,0.45);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.2s ease;
+  }
+
+  #popup-overlay.show { display: flex; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  #popup-box {
+    background: white;
+    border-radius: 28px;
+    padding: 32px 28px 24px;
+    text-align: center;
+    max-width: 440px;
+    width: 92%;
+    box-shadow: 0 8px 0 #e080c0, 0 16px 40px rgba(255,62,154,0.2);
+    border: 3px solid var(--pink);
+    position: relative;
+    animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.3) rotate(-8deg); opacity: 0; }
+    to   { transform: scale(1)   rotate(0deg);  opacity: 1; }
+  }
+
+  #popup-box svg {
+    width: 260px;
+    height: 170px;
+    display: block;
+    margin: 0 auto 10px;
+    animation: dinoWobble 1.2s ease-in-out infinite;
+    filter: drop-shadow(3px 4px 0 rgba(0,0,0,0.1));
+  }
+
+  @keyframes dinoWobble {
+    0%,100% { transform: rotate(-2deg) translateY(0);   }
+    50%      { transform: rotate(2deg)  translateY(-8px); }
+  }
+
+  #popup-box .popup-title {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.5rem;
+    color: var(--hotpink);
+    margin-bottom: 6px;
+  }
+
+  #popup-box .popup-sub {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    color: var(--purple);
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+
+  #close-popup {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #ff6eb4, #ffb347);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #cc5000;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+
+  #close-popup:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #cc5000;
+  }
+
+  /* burst stars */
+  .burst-star {
+    position: absolute;
+    font-size: 1.4rem;
+    pointer-events: none;
+    animation: burstOut 0.9s ease forwards;
+  }
+
+  @keyframes burstOut {
+    0%   { transform: translate(0,0) scale(0);   opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(1.3); opacity: 0; }
+  }
+
+  /* ——— FLOATING BG ——— */
+  .floaters {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .floater {
+    position: absolute;
+    animation: floatUp linear infinite;
+    opacity: 0.18;
+    font-size: 2rem;
+    user-select: none;
+  }
+
+  @keyframes floatUp {
+    0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0;    }
+    10%  { opacity: 0.18; }
+    90%  { opacity: 0.18; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0;    }
+  }
+
+  /* ——— DECO UNICORNS ——— */
+  .unicorn-deco {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 10px auto 0;
+    padding: 0 20px;
+  }
+
+  .unicorn-deco svg {
+    width: 110px;
+    height: 110px;
+    animation: bounce 2s ease-in-out infinite;
+    filter: drop-shadow(2px 3px 0px rgba(0,0,0,0.1));
+  }
+
+  .unicorn-deco svg:nth-child(2) { animation-delay: 0.4s; }
+  .unicorn-deco svg:nth-child(3) { animation-delay: 0.8s; }
+
+  @keyframes bounce {
+    0%,100% { transform: translateY(0) rotate(-3deg);  }
+    50%      { transform: translateY(-12px) rotate(3deg); }
+  }
+
+  /* ——— GRID ——— */
+  .grid-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 30px auto 60px;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 18px;
+    padding: 14px 10px 12px;
+    text-align: center;
+    border: 2.5px solid transparent;
+    box-shadow: 3px 4px 0 rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 14px;
+    border: 2px dashed rgba(255,110,180,0.3);
+    pointer-events: none;
+  }
+
+  .card:hover {
+    transform: translateY(-5px) rotate(1deg);
+    box-shadow: 5px 8px 0 rgba(255,62,154,0.15);
+  }
+
+  .card:nth-child(5n+1) { border-color: var(--pink); }
+  .card:nth-child(5n+2) { border-color: var(--purple); }
+  .card:nth-child(5n+3) { border-color: var(--sky); }
+  .card:nth-child(5n+4) { border-color: #ffcc00; }
+  .card:nth-child(5n+5) { border-color: var(--mint); }
+
+  .card .heart {
+    font-size: 1.6rem;
+    display: block;
+    animation: heartbeat 1.5s ease-in-out infinite;
+    line-height: 1;
+  }
+
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1);    }
+    30%      { transform: scale(1.25); }
+    50%      { transform: scale(1.1);  }
+  }
+
+  .card .phrase {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #c0006a;
+    margin: 4px 0 2px;
+    line-height: 1.2;
+  }
+
+  .card .lang {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.72rem;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Fredoka One', sans-serif;
+    color: var(--purple);
+    font-size: 1.3rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="floaters" id="floaters"></div>
+
+<header>
+  <h1>💖 Te Amo en 200 idiomas 💖</h1>
+  <p>porque el amor no tiene fronteras 🦄✨</p>
+</header>
+
+<!-- Decorative unicorns -->
+<div class="unicorn-deco">
+  <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="55" cy="68" rx="30" ry="22" fill="#ffcce8" stroke="#ff6eb4" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M48 52 Q45 38 52 30" stroke="#ff6eb4" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <ellipse cx="56" cy="26" rx="14" ry="11" fill="#ffcce8" stroke="#ff6eb4" stroke-width="2.5"/>
+    <path d="M56 15 L60 3 L64 15" fill="#ffe066" stroke="#ffb347" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="61" cy="24" r="2.5" fill="#c96dff"/><circle cx="62" cy="23" r="0.8" fill="white"/>
+    <path d="M46 20 L44 12 L50 18" fill="#ff9ed4" stroke="#ff6eb4" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M52 16 Q40 22 42 34 Q44 26 50 28 Q43 34 46 44" stroke="#c96dff" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <line x1="38" y1="84" x2="35" y2="100" stroke="#ff6eb4" stroke-width="3" stroke-linecap="round"/>
+    <line x1="47" y1="87" x2="45" y2="103" stroke="#ff6eb4" stroke-width="3" stroke-linecap="round"/>
+    <line x1="62" y1="87" x2="60" y2="103" stroke="#ff6eb4" stroke-width="3" stroke-linecap="round"/>
+    <line x1="71" y1="84" x2="74" y2="100" stroke="#ff6eb4" stroke-width="3" stroke-linecap="round"/>
+    <path d="M85 68 Q98 60 95 78 Q92 90 80 85" stroke="#c96dff" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text x="90" y="30" font-size="10">⭐</text><text x="10" y="50" font-size="9">✨</text>
+  </svg>
+  <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="55" cy="70" rx="28" ry="20" fill="#e8ccff" stroke="#c96dff" stroke-width="2.5"/>
+    <path d="M50 54 Q47 40 54 31" stroke="#c96dff" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <ellipse cx="57" cy="27" rx="13" ry="11" fill="#e8ccff" stroke="#c96dff" stroke-width="2.5"/>
+    <path d="M57 16 L61 4 L65 16" fill="#7ee8fa" stroke="#5bcfea" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="62" cy="25" r="2.5" fill="#ff6eb4"/><circle cx="63" cy="24" r="0.8" fill="white"/>
+    <path d="M47 21 L45 13 L51 19" fill="#d4a0ff" stroke="#c96dff" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M53 17 Q41 23 43 35 Q45 27 51 29 Q44 35 47 45" stroke="#ff6eb4" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <line x1="40" y1="85" x2="37" y2="101" stroke="#c96dff" stroke-width="3" stroke-linecap="round"/>
+    <line x1="49" y1="88" x2="47" y2="104" stroke="#c96dff" stroke-width="3" stroke-linecap="round"/>
+    <line x1="62" y1="88" x2="60" y2="104" stroke="#c96dff" stroke-width="3" stroke-linecap="round"/>
+    <line x1="71" y1="85" x2="74" y2="101" stroke="#c96dff" stroke-width="3" stroke-linecap="round"/>
+    <path d="M83 70 Q96 62 93 80 Q90 92 78 87" stroke="#ff6eb4" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text x="88" y="28" font-size="10">💜</text><text x="8" y="48" font-size="9">🌟</text>
+  </svg>
+  <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="55" cy="69" rx="29" ry="21" fill="#ccf9ff" stroke="#7ee8fa" stroke-width="2.5"/>
+    <path d="M49 53 Q46 39 53 30" stroke="#7ee8fa" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <ellipse cx="56" cy="26" rx="13" ry="11" fill="#ccf9ff" stroke="#7ee8fa" stroke-width="2.5"/>
+    <path d="M56 15 L60 3 L64 15" fill="#6fffc1" stroke="#00d68f" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="61" cy="24" r="2.5" fill="#ff6eb4"/><circle cx="62" cy="23" r="0.8" fill="white"/>
+    <path d="M46 20 L44 12 L50 18" fill="#a0f0ff" stroke="#7ee8fa" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M52 16 Q40 22 42 34 Q44 26 50 28 Q43 34 46 44" stroke="#ff6eb4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <line x1="39" y1="84" x2="36" y2="100" stroke="#7ee8fa" stroke-width="3" stroke-linecap="round"/>
+    <line x1="48" y1="87" x2="46" y2="103" stroke="#7ee8fa" stroke-width="3" stroke-linecap="round"/>
+    <line x1="62" y1="87" x2="60" y2="103" stroke="#7ee8fa" stroke-width="3" stroke-linecap="round"/>
+    <line x1="71" y1="84" x2="74" y2="100" stroke="#7ee8fa" stroke-width="3" stroke-linecap="round"/>
+    <path d="M84 69 Q97 61 94 79 Q91 91 79 86" stroke="#c96dff" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text x="88" y="30" font-size="10">🩵</text><text x="9" y="52" font-size="9">✨</text>
+  </svg>
+</div>
+
+<!-- THE BUTTON -->
+<div class="btn-wrap">
+  <button id="dino-btn">🦄 ¡Invocar unicornio dinosaurio! 🦕</button>
+</div>
+
+<!-- POPUP -->
+<div id="popup-overlay">
+  <div id="popup-box">
+    <svg id="dino-svg" viewBox="0 0 240 160" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="popup-title" id="popup-title"></div>
+    <div class="popup-sub" id="popup-sub"></div>
+    <button id="close-popup">Cerrar y dar otro abrazo 💕</button>
+  </div>
+</div>
+
+<!-- CARDS -->
+<div class="grid-wrap" id="grid"></div>
+
+<footer>hecho con 💖 y muchos unicornios 🦄🦄🦄</footer>
+
+<script>
+/* ——— 200 "te amo" ——— */
+const loves = [
+  ["Te amo","Español"],["I love you","Inglés"],["Je t'aime","Francés"],["Ti amo","Italiano"],
+  ["Ich liebe dich","Alemán"],["Te quiero","Gallego"],["Mahal kita","Filipino"],
+  ["Seni seviyorum","Turco"],["Я тебя люблю","Ruso"],["我爱你","Chino mandarín"],
+  ["愛してる","Japonés"],["사랑해","Coreano"],["أحبك","Árabe"],["אני אוהב אותך","Hebreo"],
+  ["Ich liäb dich","Suizo-alemán"],["Σ' αγαπώ","Griego"],["Kocham cię","Polaco"],
+  ["Saya cinta kamu","Indonesio"],["Eu te amo","Portugués BR"],["Amo-te","Portugués PT"],
+  ["Ik hou van jou","Holandés"],["Jag älskar dig","Sueco"],["Jeg elsker dig","Danés"],
+  ["Jeg elsker deg","Noruego"],["Rakastan sinua","Finlandés"],["Szeretlek","Húngaro"],
+  ["Miluju tě","Checo"],["Ľúbim ťa","Eslovaco"],["Volim te","Croata"],["Te iubesc","Rumano"],
+  ["Обичам те","Búlgaro"],["Ljubim te","Esloveno"],["Мілую цябе","Bielorruso"],
+  ["Тебе кохаю","Ucraniano"],["მიყვარხარ","Georgiano"],["Ես քեզ սիրում եմ","Armenio"],
+  ["Мен сени сүйөм","Kirguís"],["Мен сені жақсы көремін","Kazajo"],
+  ["Seni söýýärin","Turcomano"],["Men seni sevinaman","Uzbeko"],
+  ["Би чамд хайртай","Mongol"],["ฉันรักคุณ","Tailandés"],["ຂ້ອຍຮັກເຈົ້າ","Laosiano"],
+  ["Tôi yêu bạn","Vietnamita"],["ខ្ញុំស្រឡាញ់អ្នក","Jemer"],["ငါချစ်တယ်","Birmano"],
+  ["म तुमसे प्यार करता हूँ","Hindi"],["আমি তোমাকে ভালোবাসি","Bengalí"],
+  ["நான் உன்னை காதலிக்கிறேன்","Tamil"],["నేను నిన్ను ప్రేమిస్తున్నాను","Telugu"],
+  ["ನಾನು ನಿನ್ನನ್ನು ಪ್ರೀತಿಸುತ್ತೇನೆ","Kannada"],["ഞാൻ നിന്നെ സ്നേഹിക്കുന്നു","Malayalam"],
+  ["મને તમારી સાથે પ્રેમ છે","Gujarati"],["ਮੈਂ ਤੁਹਾਨੂੰ ਪਿਆਰ ਕਰਦਾ ਹਾਂ","Punjabi"],
+  ["میں تم سے پیار کرتا ہوں","Urdu"],["زه تا سره مینه لرم","Pastún"],
+  ["من دوستت دارم","Persa"],["Dost duýýaryn","Azerbaiyano"],
+  ["Ez ji te hez dikim","Kurdo"],["Ana bahibak","Árabe egipcio"],
+  ["Nkutemwa","Bemba"],["Nakupenda","Swahili"],["Ndinokuda","Shona"],
+  ["Mo ni fẹ́ rẹ","Yoruba"],["A huri fɛ","Bambara"],["Mi dushi","Papiamento"],
+  ["Ndakukunda","Tonga"],["Wa ku temwa","Nyanja"],["Wo fi wo ho","Akan/Twi"],
+  ["Mena hawa","Hausa"],["Malofa","Lingala"],
+  ["Ke a go rata","Setswana"],["Ngiyakuthanda","Zulú"],
+  ["Ndiyakuthanda","Xhosa"],["Ke a o rata","Sotho del sur"],
+  ["Ngo ya ku randa","Kikongo"],["Nyenyuka","Kinyarwanda"],
+  ["Ndagukunda","Kirundi"],["Ndikukunda","Luganda"],
+  ["Bɔ dɔ","Ewe"],["E hoʻoipo au iā ʻoe","Hawaiano"],
+  ["Aroha au iā koe","Māori"],["Fiafia au ia te oe","Samoano"],
+  ["Au sefulu loto ia koe","Tongano"],["Inā aroha au iā koe","Tahitiano"],
+  ["Ko au e alofa ia te oe","Niueano"],["Noho roa mai","Chamorro"],
+  ["Aku cinta kamu","Malayo"],["Aku tresno kowe","Javanés"],
+  ["Napenda wewe","Suajili formal"],["Ngo oi nei","Cantonés"],
+  ["Goa tuka mog korta","Konkani"],["Ami tomake bhalobashi","Bengalí formal"],
+  ["Taim i ngrá leat","Irlandés"],["Rwy'n dy garu di","Galés"],
+  ["Tha gaol agam ort","Gaélico escocés"],["S'te dua","Albanés"],
+  ["Të dua","Albanés gheg"],["Σε αγαπώ","Griego mod."],
+  ["Ez te hezkam","Zazaki"],["Sana aşığım","Turco poético"],
+  ["Ia te alofa ia te oe","Polinesio"],["Ko au e aroha nui ki a koe","Māori formal"],
+  ["Ngiyakutsandza","Swati"],["Ndi a ku funa","Venda"],
+  ["Nakupenda sana","Swahili intenso"],["Inakupenda","Swahili neutro"],
+  ["Ninapenda wewe","Swahili formal"],["Mimi nakupenda","Swahili énfasis"],
+  ["Je t'adore","Francés cariñoso"],["T'estimo","Catalán"],
+  ["Maitea zaitut","Euskera"],["Amote","Asturiano"],["Quérote","Gallego coloquial"],
+  ["T'am","Occitano"],["Ti tengiu beni","Sardo"],
+  ["Voglio bene a te","Italiano formal"],["Ti voglio bene","Italiano cariñoso"],
+  ["Te ameji","Romansh"],["Eu vă iubesc","Rumano formal"],
+  ["Те сакам","Macedonio"],["Volim te","Serbio"],["Ljubim te","Bosnio"],
+  ["Тебя люблю","Ruso coloquial"],["Я кохаю тебе","Ucraniano formal"],
+  ["Ja ciebie lubię","Polaco suave"],["Milujem ťa","Eslovaco coloquial"],
+  ["Laska mi ciebie","Sorabo"],["Szeretlek téged","Húngaro formal"],
+  ["Szerelmem vagy","Húngaro poético"],["Sevirem","Azerbaiyano coloquial"],
+  ["Seni isteyirem","Azerbaiyano formal"],["Ts'a ge'i","Navajo"],
+  ["In k'aajtech","Maya yucateco"],["Nimitztlazohtla","Náhuatl"],
+  ["Rimaykullayki","Quechua"],["Munasqayki","Quechua cuzqueño"],
+  ["Mañi","Aymara"],["Rohayhu","Guaraní formal"],
+  ["Mwen renmen ou","Creole haitiano"],["Mo fẹ́ ẹ","Yoruba coloquial"],
+  ["Nɔ fe wò","Ewe coloquial"],["N b'i fɛ","Dyula"],
+  ["Man jinni feenaa","Oromo"],["Ine ndi kukukonda","Chichewa"],
+  ["Me dɔ wo","Twi formal"],["Mi ti ayme","Criollo antillano"],
+  ["Ik houd van u","Holandés formal"],["Ik ben verliefd op je","Holandés enamorado"],
+  ["Jeg er glad i dig","Danés cariñoso"],["Jeg elsker deg høyt","Noruego intenso"],
+  ["Jag älskar dig djupt","Sueco profundo"],["Minä rakastan sinua","Finlandés formal"],
+  ["Armastan sind","Estonio"],["Es tevi mīlu","Letón"],["Aš tave myliu","Lituano"],
+  ["Мен сени яратаман","Uzbeko formal"],["Сені жақсы көремін","Kazajo coloquial"],
+  ["Я цябе кахаю","Bielorruso formal"],["Тэ кахаю","Bielorruso dialectal"],
+  ["Amo te","Latín"],["Te amo perdidamente","Español poético"],
+  ["Ndinokuda zvako","Shona intenso"],["Nakupenda mpenzi","Swahili cariñoso"],
+  ["Daisuki da yo","Japonés coloquial"],["Saranghae","Coreano coloquial"],
+  ["Habibi","Árabe afectuoso"],["Habibti","Árabe fem."],
+  ["Ya hayati","Árabe poético"],["Ruhum","Turco poético"],["Canım","Turco cariñoso"],
+  ["Wo ai ni hen duo","Chino intenso"],["Hu ye ni herak","Tetum"],
+  ["Olu mi","Yoruba coloquial"],["Ngiyakutsandza","Swati2"],
+  ["Tya bichame","Macedonio2"],["Szeret","Húngaro breve"],
+  ["Tabrik meknam","Dari"],["Dilerim seni","Turco col."],
+  ["Ou te alofa ia te oe","Samoano formal"],["Mikasihi iko","Suajili2"],
+  ["Wo yi wo","Twi coloquial"],["Tя bичам","Macedonio bul."],
+  ["Ta me i ngra leat","Irlandés col."],["Ja ciebie kocham","Polaco poético"],
+  ["Lubim te","Sorabo bajo"],["Milujeme se","Checo mutuo"],
+  ["Ke a go rata","Tswana"],["Ndiyabathanda","Xhosa pl."],
+  ["Nkukunda","Luganda col."],["Nakupenda zaidi","Swahili plus"],
+  ["Mimi nakupenda sana","Swahili énfasis2"],["M'bi dyé","Senufo"],
+  ["Je jemi a-mon ti","Creole haitiano2"],["Ngo oi lei","Cantonés2"],
+];
+
+/* ——— POPUP MESSAGES ——— */
+const messages = [
+  ["🦄🦕 ¡RAWR con amor! 🦄🦕", "El unicornio dino te manda amor desde la prehistoria 💖"],
+  ["✨ ¡Apareció uno nuevo! ✨", "Este dinosaurio con cuerno te quiere muchísimo 🌈"],
+  ["🌈 ¡Al ataque del amor! 🌈", "Rawr significa 'te amo' en dinosaurio 🦕💜"],
+  ["💫 ¡Mágico y prehistórico! 💫", "Juntos son imparables... y muy tiernos 🦄🦕"],
+  ["🎉 ¡Un visitante especial! 🎉", "Vino desde hace 65 millones de años solo para quererte 💕"],
+  ["⭐ ¡El más adorable! ⭐", "Mitad unicornio, mitad dinosaurio, 100% amor 🌟"],
+  ["💖 ¡Ruge de felicidad! 💖", "No hay nada más tierno que un unicornio sobre un dino 🦄"],
+  ["🌟 ¡Criatura mágica! 🌟", "Galopando por el jurásico con corazones y purpurina ✨"],
+];
+
+/* ——— COLOR PALETTES for the dino-unicorn SVG ——— */
+const dinoPalettes = [
+  { body:'#7ee8fa', stroke:'#5bcfea', spike:'#6fffc1', spikeS:'#00d68f' },
+  { body:'#b5ffd9', stroke:'#00c97a', spike:'#ffe066', spikeS:'#e0a000' },
+  { body:'#ffd6b0', stroke:'#ff8c42', spike:'#c96dff', spikeS:'#8a00cc' },
+  { body:'#d4b0ff', stroke:'#a040e0', spike:'#7ee8fa', spikeS:'#00a0cc' },
+  { body:'#fff0b0', stroke:'#e0b000', spike:'#ff9ed4', spikeS:'#cc2080' },
+  { body:'#ffcccc', stroke:'#ff4f6d', spike:'#6fffc1', spikeS:'#00aa66' },
+];
+
+const unicPalettes = [
+  { body:'#ffcce8', stroke:'#ff6eb4', mane:'#c96dff', horn:'#ffe066', hornS:'#ffb347' },
+  { body:'#e8ccff', stroke:'#c96dff', mane:'#ff6eb4', horn:'#7ee8fa', hornS:'#5bcfea' },
+  { body:'#ccf9ff', stroke:'#7ee8fa', mane:'#ff6eb4', horn:'#6fffc1', hornS:'#00d68f' },
+  { body:'#fff3cc', stroke:'#ffb347', mane:'#ff6eb4', horn:'#c96dff', hornS:'#8a00cc' },
+  { body:'#d0ffd6', stroke:'#00c97a', mane:'#c96dff', horn:'#ffe066', hornS:'#cc8800' },
+  { body:'#ffd6f0', stroke:'#ff3d9a', mane:'#7ee8fa', horn:'#ffe066', hornS:'#e0a000' },
+];
+
+function rnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+/* Build SVG innerHTML with chosen color palette */
+function buildDinoSVG(d, u) {
+  return `
+    <!-- ===== DINOSAURIO ===== -->
+    <ellipse cx="130" cy="112" rx="62" ry="38" fill="${d.body}" stroke="${d.stroke}" stroke-width="3" stroke-linecap="round"/>
+    <path d="M90 80 Q80 55 88 38" stroke="${d.stroke}" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <ellipse cx="94" cy="28" rx="20" ry="15" fill="${d.body}" stroke="${d.stroke}" stroke-width="3"/>
+    <path d="M78 30 Q85 40 100 32" stroke="${d.stroke}" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <line x1="86" y1="36" x2="84" y2="42" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="100" cy="22" r="4" fill="#ff6eb4"/>
+    <circle cx="101" cy="21" r="1.5" fill="white"/>
+    <path d="M80 34 Q76 42 80 45 Q84 42 82 36" fill="#ff9ed4" stroke="#ff6eb4" stroke-width="1.5"/>
+    <path d="M192 118 Q220 105 225 120 Q228 132 210 128 Q225 140 215 148" stroke="${d.stroke}" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M100 142 Q96 155 90 158 M100 142 Q104 155 108 158" stroke="${d.stroke}" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <path d="M150 146 Q146 158 140 160 M150 146 Q154 158 158 160" stroke="${d.stroke}" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <path d="M120 76 L115 65 L125 74" fill="${d.spike}" stroke="${d.spikeS}" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M135 73 L130 62 L140 71" fill="${d.spike}" stroke="${d.spikeS}" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M150 75 L145 64 L155 73" fill="${d.spike}" stroke="${d.spikeS}" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M165 80 L162 70 L170 79" fill="${d.spike}" stroke="${d.spikeS}" stroke-width="1.5" stroke-linejoin="round"/>
+    <!-- ===== UNICORNIO ===== -->
+    <ellipse cx="128" cy="72" rx="24" ry="17" fill="${u.body}" stroke="${u.stroke}" stroke-width="2.5"/>
+    <line x1="116" y1="84" x2="112" y2="100" stroke="${u.stroke}" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="140" y1="84" x2="144" y2="100" stroke="${u.stroke}" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M118 60 Q114 46 118 38" stroke="${u.stroke}" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <ellipse cx="122" cy="32" rx="13" ry="10" fill="${u.body}" stroke="${u.stroke}" stroke-width="2.5"/>
+    <path d="M122 22 L125 10 L128 22" fill="${u.horn}" stroke="${u.hornS}" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="128" cy="30" r="2.5" fill="#c96dff"/>
+    <circle cx="129" cy="29" r="0.9" fill="white"/>
+    <path d="M111 26 L108 18 L115 24" fill="#ff9ed4" stroke="${u.stroke}" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M116 35 Q122 40 128 36" stroke="${u.stroke}" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    <path d="M118 24 Q106 30 108 42 Q111 34 116 36 Q109 42 112 52" stroke="${u.mane}" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M116 25 Q104 32 107 44" stroke="${u.stroke}" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M152 72 Q164 64 161 78 Q158 88 148 84" stroke="${u.mane}" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M152 74 Q166 76 158 84" stroke="${u.stroke}" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <!-- arcoiris y estrellas -->
+    <path d="M20 30 Q45 5 70 30" stroke="#ff4f6d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M23 34 Q45 10 67 34" stroke="#ffb347" stroke-width="2"   fill="none" stroke-linecap="round"/>
+    <path d="M26 38 Q45 15 64 38" stroke="#ffe066" stroke-width="2"   fill="none" stroke-linecap="round"/>
+    <path d="M29 42 Q45 20 61 42" stroke="#6fffc1" stroke-width="2"   fill="none" stroke-linecap="round"/>
+    <path d="M32 46 Q45 25 58 46" stroke="#7ee8fa" stroke-width="2"   fill="none" stroke-linecap="round"/>
+    <text x="5"   y="75"  font-size="13">⭐</text>
+    <text x="215" y="80"  font-size="11">✨</text>
+    <text x="190" y="35"  font-size="12">💖</text>
+    <text x="40"  y="155" font-size="11">🌈</text>
+    <text x="200" y="155" font-size="11">🌟</text>
+  `;
+}
+
+/* ——— BUILD CARDS ——— */
+const heartEmojis = ["💖","💗","💓","💞","💝","💕","❤️","🧡","💛","💚","💙","💜","🤍","🩷","🩵","❤️‍🔥"];
+const grid = document.getElementById('grid');
+
+loves.forEach(([phrase, lang]) => {
+  const heart = rnd(heartEmojis);
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <span class="heart">${heart}</span>
+    <div class="phrase">${phrase}</div>
+    <div class="lang">${lang}</div>
+  `;
+  card.querySelector('.heart').style.animationDelay = (Math.random() * 1.5).toFixed(2) + 's';
+  grid.appendChild(card);
+});
+
+/* ——— FLOATING BG ——— */
+const floaterSymbols = ['💖','🦄','✨','⭐','🌈','💜','💗','🌸','🎀','💫','🌟','💕'];
+const floatersEl = document.getElementById('floaters');
+for (let i = 0; i < 30; i++) {
+  const el = document.createElement('div');
+  el.className = 'floater';
+  el.textContent = rnd(floaterSymbols);
+  el.style.left = (Math.random() * 100) + '%';
+  el.style.animationDuration = (8 + Math.random() * 14) + 's';
+  el.style.animationDelay  = (Math.random() * 12) + 's';
+  el.style.fontSize = (1.2 + Math.random() * 2) + 'rem';
+  floatersEl.appendChild(el);
+}
+
+/* ——— BURST EFFECT ——— */
+function spawnBurst(box) {
+  const chars = ['⭐','✨','💫','💖','🌟','💕','🌈','🦄'];
+  for (let i = 0; i < 10; i++) {
+    const s = document.createElement('span');
+    s.className = 'burst-star';
+    const angle = (i / 10) * 360;
+    const dist  = 70 + Math.random() * 50;
+    s.style.setProperty('--tx', Math.cos(angle * Math.PI / 180) * dist + 'px');
+    s.style.setProperty('--ty', Math.sin(angle * Math.PI / 180) * dist + 'px');
+    s.style.left = '50%';
+    s.style.top  = '40%';
+    s.textContent = rnd(chars);
+    s.style.animationDuration = (0.5 + Math.random() * 0.5) + 's';
+    box.appendChild(s);
+    setTimeout(() => s.remove(), 1200);
+  }
+}
+
+/* ——— POPUP LOGIC ——— */
+const overlay  = document.getElementById('popup-overlay');
+const box      = document.getElementById('popup-box');
+const titleEl  = document.getElementById('popup-title');
+const subEl    = document.getElementById('popup-sub');
+const dinoSvg  = document.getElementById('dino-svg');
+
+document.getElementById('dino-btn').addEventListener('click', () => {
+  // pick random message and colors
+  const [title, sub] = rnd(messages);
+  titleEl.textContent = title;
+  subEl.textContent   = sub;
+  // rebuild SVG with new palette
+  dinoSvg.innerHTML = buildDinoSVG(rnd(dinoPalettes), rnd(unicPalettes));
+  overlay.classList.add('show');
+  setTimeout(() => spawnBurst(box), 60);
+});
+
+document.getElementById('close-popup').addEventListener('click', () => {
+  overlay.classList.remove('show');
+});
+
+overlay.addEventListener('click', e => {
+  if (e.target === overlay) overlay.classList.remove('show');
+});
+</script>
+</body>
+</html>
